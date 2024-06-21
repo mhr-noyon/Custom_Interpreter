@@ -2,7 +2,6 @@
 enum TokenType
 {
      MAIN,
-     INT,
      IDENTIFIER,
      NUMBER,
      COLON,
@@ -28,22 +27,33 @@ enum TokenType
      OR,
      END
 };
-
 // Token structure
 struct Token
 {
      TokenType type;
      string name;
-     string value;
 };
 
+enum VariableType
+{
+     INT,
+     STRING
+};
+struct Variable
+{
+     VariableType type;
+     string name;
+     string value;
+};
 // Global variables
 vector<Token> tokens;
-vector<Token> tempTokens;
-vector<Token> permanentTokens;
+vector<Variable> variables;
+vector<Variable> tempVariables;
+vector<Variable> permanentVariables;
 
 queue<Token> expression;
 // size_t pos = 0;
+VariableType currentVariableType;
 Token currentToken;
 Token previousToken;
 char buffer[100], currentChar;
@@ -181,6 +191,9 @@ void identifyTokens(char *program)
           }
           else
           {
+               setTokens(buffer, i);
+               i = 0;
+               typeFlag = 0;
                if (j + 1 < strlen(program) && currentChar == '=' && program[j + 1] == '=')
                {
                     tokens.push_back({EQUAL, "=="});
@@ -227,7 +240,6 @@ void identifyTokens(char *program)
                     j++;
                     continue;
                }
-               setTokens(buffer, i);
                isSpecialSymbol(currentChar); // if space then auto skipped
                if (currentChar == '"')
                {
@@ -240,8 +252,6 @@ void identifyTokens(char *program)
                          gotQuote = true;
                     }
                }
-               i = 0;
-               typeFlag = 0;
           }
      }
 }
@@ -256,9 +266,6 @@ void printTokens()
           {
           case MAIN:
                type = "MAIN";
-               break;
-          case INT:
-               type = "INT";
                break;
           case IDENTIFIER:
                type = "IDENTIFIER";
@@ -336,10 +343,7 @@ void printTokens()
                type = "UNKNOWN";
                break;
           }
-          if (token.value == "")
-               cerr << i << "th Token: " << type << ", " << token.name << ", " << "Empty value" << endl;
-          else
-               cerr << i << "th Token: " << type << ", " << token.name << ", " << token.value << endl;
+          cerr << i << "th Token: " << type << ", " << token.name << endl;
           i++;
      }
      cerr << "\n\n";

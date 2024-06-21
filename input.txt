@@ -1,11 +1,17 @@
 // > < >= <= ==
-main: 
-int a, c=1, b=5*2^2; 
-print 5/1 * 5, b*c;
+main:
+int a=10, c=1, b=5*2^2; 
+print "Enter the value of a: ";
+scan d;
+scan a;
+print 5/1 * 5," ", b*c;
 if a >= b:
-     int d;
+     int d=3;
+     a = d + a;
      print a;
-elif b==c || b>c:
+elif b==c:
+     int d=6;
      print b;
+     print a;
 endif
 endmain

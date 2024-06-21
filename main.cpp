@@ -2,9 +2,17 @@
      //Input the manual code which has extension in file name ".hard":
      main:
           num: a, b;
-          input: a, b, c, str;
+          scan a, b, c, str;
           num: result = a * b + c;
-          print:"These are the mathed number: " + a + b + c + "\n";
+          print "These are the mathed number: " + a + b + c + "\n";
+          if a >= b:
+            int d=3;
+            a = d + a;
+            print a;
+        elif b==c:
+            int d=6;
+            print b;
+        endif
      endmain
 
      main:
@@ -69,18 +77,27 @@ int parseExpression();
 void parseDeclarations();
 void parsePrint();
 void parseScan();
+
+// for condition
+void onlyCheckIf();
 void parseIf();
+bool extractCondition();
+
 string scanInput();
 
 bool isInteger(string &str);
 void tillRParen();
 
+void transferVariables();
 bool checkingCondition = false;
 bool withinBlock = false;
 bool disable = false;
+bool oneConditionMatched = false;
+string lastCondition = "";
 //----------------------Methods in parser.h--------------------
 
 #include "tokenGenerate.h"
+bool checkCondition(int left, Token opt, int right);
 #include "infixToPostfix.h"
 #include "parser.h"
 void converter();
@@ -101,6 +118,10 @@ bool isInteger(string &str)
 }
 void printOutput(string input)
 {
+    if (withinBlock && disable)
+    {
+        return;
+    }
     cout << input;
     // FILE *fp = fopen("./output.txt", "a");
     // if (fp == NULL)
@@ -116,6 +137,10 @@ void printOutput(string input)
 }
 string scanInput()
 {
+    if (withinBlock && disable)
+    {
+        return "1";
+    }
     string s;
     cin >> s;
     return s;

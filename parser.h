@@ -7,7 +7,8 @@
 // Error handling function
 void error(const string &message)
 {
-     cerr << "Error: " << message << endl;
+     cerr << "Error: " << message << " in " << pos - 1 << "no. token: " << currentToken.name << endl;
+     cout << "Error: " << message << " in " << pos - 1 << "no. token: " << currentToken.name << endl;
      exit(EXIT_FAILURE);
 }
 bool isDeclared(string variable)
@@ -15,28 +16,28 @@ bool isDeclared(string variable)
      // cout << pos << endl;
      if (withinBlock && disable)
      {
-          for (int i = 0; i < tempTokens.size(); i++)
+          for (int i = 0; i < tempVariables.size(); i++)
           {
-               if (tempTokens[i].type == IDENTIFIER && tempTokens[i].name == variable)
+               if (tempVariables[i].type == INT && tempVariables[i].name == variable)
                {
                     return true;
                }
           }
      }
-     else if (withinBlock)
+     else if (withinBlock && !disable)
      {
-          for (int i = 0; i < permanentTokens.size(); i++)
+          for (int i = 0; i < permanentVariables.size(); i++)
           {
-               if (permanentTokens[i].type == IDENTIFIER && permanentTokens[i].name == variable)
+               if (permanentVariables[i].type == INT && permanentVariables[i].name == variable)
                {
                     return true;
                }
           }
      }
-     for (int i = 0; i < pos - 1; i++)
+     for (int i = 0; i < variables.size(); i++)
      {
           // cout << tokens[i].name << endl;
-          if (tokens[i].type == IDENTIFIER && tokens[i].name == variable)
+          if (variables[i].type == INT && variables[i].name == variable)
           {
                return true;
           }
@@ -48,28 +49,28 @@ bool isSetValue(string variable)
      // cout<<pos<<endl;
      if (withinBlock && disable)
      {
-          for (int i = 0; i < tempTokens.size(); i++)
+          for (int i = 0; i < tempVariables.size(); i++)
           {
-               if (tempTokens[i].type == IDENTIFIER && tempTokens[i].name == variable && tempTokens[i].value != "")
+               if (tempVariables[i].type == INT && tempVariables[i].name == variable && tempVariables[i].value != "")
                {
                     return true;
                }
           }
      }
-     else if (withinBlock)
+     else if (withinBlock && !disable)
      {
-          for (int i = 0; i < permanentTokens.size(); i++)
+          for (int i = 0; i < permanentVariables.size(); i++)
           {
-               if (permanentTokens[i].type == IDENTIFIER && permanentTokens[i].name == variable && permanentTokens[i].value != "")
+               if (permanentVariables[i].type == INT && permanentVariables[i].name == variable && permanentVariables[i].value != "")
                {
                     return true;
                }
           }
      }
-     for (int i = 0; i < pos - 1; i++)
+     for (int i = 0; i < variables.size(); i++)
      {
           // cout << tokens[i].name << endl;
-          if (tokens[i].type == IDENTIFIER && tokens[i].name == variable && tokens[i].value != "")
+          if (variables[i].type == INT && variables[i].name == variable && variables[i].value != "")
           {
                return true;
           }
@@ -81,29 +82,29 @@ int getVariableValue(string variable)
 {
      if (withinBlock && disable)
      {
-          for (int i = 0; i < tempTokens.size(); i++)
+          for (int i = 0; i < tempVariables.size(); i++)
           {
-               if (tempTokens[i].type == IDENTIFIER && tempTokens[i].name == variable && tempTokens[i].value != "")
+               if (tempVariables[i].type == INT && tempVariables[i].name == variable && tempVariables[i].value != "")
                {
-                    return stoi(tempTokens[i].value);
+                    return stoi(tempVariables[i].value);
                }
           }
      }
-     else if (withinBlock)
+     else if (withinBlock && !disable)
      {
-          for (int i = 0; i < permanentTokens.size(); i++)
+          for (int i = 0; i < permanentVariables.size(); i++)
           {
-               if (permanentTokens[i].type == IDENTIFIER && permanentTokens[i].name == variable && permanentTokens[i].value != "")
+               if (permanentVariables[i].type == INT && permanentVariables[i].name == variable && permanentVariables[i].value != "")
                {
-                    return stoi(permanentTokens[i].value);
+                    return stoi(permanentVariables[i].value);
                }
           }
      }
-     for (int i = 0; i < pos - 1; i++)
+     for (int i = 0; i < variables.size(); i++)
      {
-          if (tokens[i].type == IDENTIFIER && tokens[i].name == variable)
+          if (variables[i].type == INT && variables[i].name == variable)
           {
-               return stoi(tokens[i].value);
+               return stoi(variables[i].value);
           }
      }
      return 0;
@@ -112,35 +113,58 @@ void setVariableValue(string variable, int value)
 {
      if (withinBlock && disable)
      {
-          for (int i = 0; i < tempTokens.size(); i++)
+          for (int i = 0; i < tempVariables.size(); i++)
           {
-               if (tempTokens[i].type == IDENTIFIER && tempTokens[i].name == variable && tempTokens[i].value != "")
+               if (tempVariables[i].type == INT && tempVariables[i].name == variable && tempVariables[i].value != "")
                {
-                    tempTokens[i].value = to_string(value);
+                    tempVariables[i].value = to_string(value);
                     return;
                }
           }
+          tempVariables.push_back({INT, variable, to_string(value)});
+          return;
      }
-     else if (withinBlock)
+     else if (withinBlock && !disable)
      {
-          for (int i = 0; i < permanentTokens.size(); i++)
+          for (int i = 0; i < permanentVariables.size(); i++)
           {
-               if (permanentTokens[i].type == IDENTIFIER && permanentTokens[i].name == variable && permanentTokens[i].value != "")
+               if (permanentVariables[i].type == INT && permanentVariables[i].name == variable && permanentVariables[i].value != "")
                {
-                    permanentTokens[i].value = to_string(value);
+                    permanentVariables[i].value = to_string(value);
                     return;
                }
           }
+          permanentVariables.push_back({INT, variable, to_string(value)});
+          return;
      }
-     for (int i = 0; i < pos - 1; i++)
+     for (int i = 0; i < variables.size(); i++)
      {
-          if (tokens[i].type == IDENTIFIER && tokens[i].name == variable)
+          if (variables[i].type == INT && variables[i].name == variable)
           {
-               tokens[i].value = to_string(value);
+               variables[i].value = to_string(value);
                return;
           }
      }
      error("Variable not declared");
+}
+void transferVariables()
+{
+     for (int i = 0; i < permanentVariables.size(); i++)
+     {
+          bool flag = false;
+          for (int j = 0; j < variables.size(); j++)
+          {
+               if (permanentVariables[i].type == variables[j].type && permanentVariables[i].name == variables[j].name)
+               {
+                    variables[j].value = permanentVariables[i].value;
+                    flag = true;
+                    break;
+               }
+          }
+          if (flag)
+               continue;
+          // variables.push_back(permanentVariables[i]);
+     }
 }
 // ---------------Parsing functions----------------
 void parseProgram()
@@ -168,6 +192,7 @@ void parseProgram()
      {
           if (currentToken.type == KEYWORD && currentToken.name == "int")
           {
+               currentVariableType = INT;
                parseDeclarations();
                currentToken = getNextToken();
           }
@@ -190,7 +215,18 @@ void parseProgram()
           }
           else if (currentToken.type == KEYWORD && currentToken.name == "if")
           {
+               // for(int i=0;i<variables.size();i++){
+               //      cout<<variables[i].name<<" "<<variables[i].value<<endl;
+               // }
                parseIf();
+               if (oneConditionMatched)
+               {
+                    transferVariables();
+                    oneConditionMatched = false;
+               }
+               permanentVariables.clear();
+               disable = false;
+               lastCondition = "";
                // cout<<"here"<<endl;
                currentToken = getNextToken();
           }
@@ -206,19 +242,24 @@ void parseIf()
      withinBlock = true;
      while (currentToken.name != "endif")
      {
-          if (currentToken.name == "if")
+          tempVariables.clear();
+          if (currentToken.name == "if" && lastCondition == "")
           {
+               lastCondition = "if";
                onlyCheckIf();
           }
-          else if (currentToken.name == "elif")
+          else if (currentToken.name == "elif" && (lastCondition == "if" || lastCondition == "elif"))
           {
-               currentToken = getNextToken();
+               lastCondition = "elif";
                onlyCheckIf();
           }
-          else if (currentToken.name == "else")
+          else if (currentToken.name == "else" && (lastCondition == "if" || lastCondition == "elif"))
           {
+               // cout << "Okay\n";
                currentToken = getNextToken();
+               lastCondition = "else";
                onlyCheckIf();
+               continue;
           }
           else if (currentToken.name == "end")
           {
@@ -228,7 +269,7 @@ void parseIf()
           {
                currentToken = getNextToken();
           }
-          currentToken = getNextToken();
+          // currentToken = getNextToken();
      }
      withinBlock = false;
 }
@@ -270,31 +311,51 @@ bool extractCondition()
      if (currentToken.type == EQUAL || currentToken.type == NOT_EQUAL || currentToken.type == LESS_THAN || currentToken.type == GREATER_THAN || currentToken.type == LESS_THAN_EQUAL || currentToken.type == GREATER_THAN_EQUAL)
      {
           operation = currentToken; // save the operation
+          // cerr << "Operation: " << operation.name << endl;
      }
      else
      {
-          error("Error in condition");
+          error("something wrong in condition");
      }
      rightValue = parseExpression();
      checkingCondition = false;
      bool flag = true;
-     if (!checkCondition(leftValue, operation, rightValue))
+     if (!checkCondition(leftValue, operation, rightValue) || oneConditionMatched)
      {
           disable = true;
           flag = false;
+     }
+     if (!disable)
+     {
+          oneConditionMatched = true;
      }
      return flag;
 }
 void onlyCheckIf()
 {
-     extractCondition();
+     // cout << lastCondition << endl;
+     if (lastCondition != "else")
+     {
+          extractCondition();
+     }
+     else if (lastCondition == "else" && !oneConditionMatched)
+     {
+          disable = false;
+          oneConditionMatched = true;
+     }
+     else if (lastCondition == "else" && oneConditionMatched)
+     {
+          disable = true;
+     }
+
      if (currentToken.type == COLON)
      {
+          // cout << "COLON\n";
           currentToken = getNextToken();
      }
      else
      {
-          error("Expected ':' after condition");
+          error("Expected ':' to start if-elif-else block");
      }
      while (currentToken.name != "endif" && currentToken.name != "else" && currentToken.name != "elif")
      {
@@ -305,14 +366,18 @@ void onlyCheckIf()
           }
           else if (currentToken.type == IDENTIFIER)
           {
+               // cerr<<"Here\n";
                parseStatement();
                currentToken = getNextToken();
           }
           else if (currentToken.type == KEYWORD && currentToken.name == "print")
           {
                parsePrint();
+               // cout << "here" << endl;
+               // cout << currentToken.name << endl;
                // cout<<"here"<<endl;
                currentToken = getNextToken();
+               // cout << currentToken.name << endl;
           }
           else if (currentToken.type == KEYWORD && currentToken.name == "scan")
           {
@@ -328,8 +393,7 @@ void onlyCheckIf()
           // }
           else
           {
-               cerr << currentToken.name << endl;
-               error("Expected 'int', identifier or 'print'");
+               error("Expected 'int', identifier,'scan' or 'print'");
           }
      }
 }
@@ -344,12 +408,19 @@ void parseDeclarations()
           {
                if (isDeclared(currentToken.name))
                {
-                    error("Error variable redefined");
+                    error("Variable redefined");
                }
-               if (disable)
+               if (withinBlock && disable)
                {
-                    blockTokens.push_back(currentToken);
-                    tokens.erase(tokens.begin() + pos - 1);
+                    tempVariables.push_back({INT, currentToken.name, ""});
+               }
+               else if (withinBlock)
+               {
+                    permanentVariables.push_back({INT, currentToken.name, ""});
+               }
+               else
+               {
+                    variables.push_back({INT, currentToken.name, ""});
                }
                continue;
           }
@@ -358,9 +429,6 @@ void parseDeclarations()
                // currentToken = getNextToken();
                Token toAssign = previousToken;
                int value = parseExpression();
-               if (disable)
-               {
-               }
                setVariableValue(toAssign.name, value);
                assign = true;
           }
@@ -385,6 +453,7 @@ void parseStatement()
 {
      if (isDeclared(currentToken.name))
      {
+          // cout << "YES\n";
           previousToken = currentToken;
           currentToken = getNextToken();
           if (currentToken.type == ASSIGN)
@@ -421,7 +490,7 @@ void parsePrint()
                {
                     if (!isDeclared(previousToken.name))
                     {
-                         error("Error variable used before defined");
+                         error("Variable used before defined");
                     }
                     if (!isSetValue(previousToken.name))
                     {
@@ -443,7 +512,7 @@ void parsePrint()
                }
                else
                {
-                    error("Error in print statement");
+                    error("Something in print statement");
                }
                if (currentToken.type == SEMICOLON)
                {
@@ -468,7 +537,7 @@ void parsePrint()
           }
           else
           {
-               error("Error in print statement");
+               error("Something wrong in print statement");
           }
      }
      printOutput("\n");
@@ -483,12 +552,12 @@ void parseScan()
           {
                if (!isDeclared(currentToken.name))
                {
-                    error("Error variable is not defined");
+                    error("Variable is not defined");
                }
                string value = scanInput();
                if (!isInteger(value))
                {
-                    error("Error input is not an integer");
+                    error("Input is not an integer");
                }
                setVariableValue(currentToken.name, stoi(value));
           }
@@ -502,7 +571,7 @@ void parseScan()
           }
           else
           {
-               error("Error in scan statement");
+               error("Something wrong in scan statement");
           }
      }
 }
@@ -525,7 +594,7 @@ int parseExpression()
                {
                     if (currentToken.type == IDENTIFIER && !isDeclared(currentToken.name))
                     {
-                         error("Error variable used before defined");
+                         error("Variable used before defined");
                     }
                     expression.push(currentToken);
                     continue;
@@ -545,7 +614,7 @@ int parseExpression()
                }
                else
                {
-                    error("Error in expression");
+                    error("Something wrong in expression");
                }
           }
      }
@@ -567,7 +636,7 @@ void tillRParen()
           {
                if (currentToken.type == IDENTIFIER && !isDeclared(currentToken.name))
                {
-                    error("Error variable used before defined");
+                    error("Variable used before defined");
                }
                expression.push(currentToken);
                continue;
@@ -589,7 +658,7 @@ void tillRParen()
           }
           else
           {
-               error("Error in expression");
+               error("Something wrong in expression");
           }
      }
 }

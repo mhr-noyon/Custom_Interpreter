@@ -15,6 +15,10 @@ bool curGreaterThanPrev(Token a, Token b)
 
 int converterExpression()
 {
+     if (withinBlock && disable)
+     {
+          return 1;
+     }
      stack<Token> stk;
      while (!expression.empty())
      {
@@ -62,7 +66,7 @@ int converterExpression()
      }
      // cerr << "\n\n";
      int value = calc();
-     cerr<<"The value of the expression is : "<<value<<endl;
+     cerr << "The value of the expression is : " << value << endl;
      return value;
      // cout<<"The postfix expression is : ";
      // while (!postfixExpression.empty())
