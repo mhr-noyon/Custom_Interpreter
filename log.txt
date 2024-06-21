@@ -1,0 +1,103 @@
+Line: // > < >= <= ==
+Line: main: 
+Line: int a, c=1, b=5*2^2; 
+Line: print 5/1 * 5, b*c;
+Line: if a >= b:
+Line:     int d;
+Line:      print a;
+Line: elif b==c || b>c:
+Line:      print b;
+Line: endif
+Line: endmain
+
+Tokens: 
+0th Token: KEYWORD, main, Empty value
+1th Token: COLON, :, Empty value
+2th Token: KEYWORD, int, Empty value
+3th Token: IDENTIFIER, a, Empty value
+4th Token: COMMA, ,, Empty value
+5th Token: IDENTIFIER, c, Empty value
+6th Token: ASSIGN, =, Empty value
+7th Token: NUMBER, 1, Empty value
+8th Token: COMMA, ,, Empty value
+9th Token: IDENTIFIER, b, Empty value
+10th Token: ASSIGN, =, Empty value
+11th Token: NUMBER, 5, Empty value
+12th Token: MULTIPLY, *, Empty value
+13th Token: NUMBER, 2, Empty value
+14th Token: POWER, ^, Empty value
+15th Token: NUMBER, 2, Empty value
+16th Token: SEMICOLON, ;, Empty value
+17th Token: KEYWORD, print, Empty value
+18th Token: NUMBER, 5, Empty value
+19th Token: DEVIDE, /, Empty value
+20th Token: NUMBER, 1, Empty value
+21th Token: MULTIPLY, *, Empty value
+22th Token: NUMBER, 5, Empty value
+23th Token: COMMA, ,, Empty value
+24th Token: IDENTIFIER, b, Empty value
+25th Token: MULTIPLY, *, Empty value
+26th Token: IDENTIFIER, c, Empty value
+27th Token: SEMICOLON, ;, Empty value
+28th Token: KEYWORD, if, Empty value
+29th Token: IDENTIFIER, a, Empty value
+30th Token: GREATER_THAN_EQUAL, >=, Empty value
+31th Token: IDENTIFIER, b, Empty value
+32th Token: COLON, :, Empty value
+33th Token: KEYWORD, print, Empty value
+34th Token: IDENTIFIER, a, Empty value
+35th Token: SEMICOLON, ;, Empty value
+36th Token: KEYWORD, elif, Empty value
+37th Token: EQUAL, ==, Empty value
+38th Token: IDENTIFIER, bc, Empty value
+39th Token: OR, ||, Empty value
+40th Token: GREATER_THAN, >, Empty value
+41th Token: IDENTIFIER, bc, Empty value
+42th Token: COLON, :, Empty value
+43th Token: KEYWORD, print, Empty value
+44th Token: IDENTIFIER, b, Empty value
+45th Token: SEMICOLON, ;, Empty value
+46th Token: KEYWORD, endif, Empty value
+
+
+token number: 0 -> main is moved.
+token number: 1 -> : is moved.
+token number: 2 -> int is moved.
+token number: 3 -> a is moved.
+token number: 4 -> , is moved.
+token number: 5 -> c is moved.
+token number: 6 -> = is moved.
+token number: 7 -> 1 is moved.
+token number: 8 -> , is moved.
+The value of the expression is : 1
+Expression done
+token number: 9 -> b is moved.
+token number: 10 -> = is moved.
+token number: 11 -> 5 is moved.
+token number: 12 -> * is moved.
+token number: 13 -> 2 is moved.
+token number: 14 -> ^ is moved.
+token number: 15 -> 2 is moved.
+token number: 16 -> ; is moved.
+The value of the expression is : 20
+Expression done
+token number: 17 -> print is moved.
+token number: 18 -> 5 is moved.
+token number: 19 -> / is moved.
+token number: 20 -> 1 is moved.
+token number: 21 -> * is moved.
+token number: 22 -> 5 is moved.
+token number: 23 -> , is moved.
+The value of the expression is : 25
+Expression done
+Print live expression Value: 25
+token number: 24 -> b is moved.
+token number: 25 -> * is moved.
+token number: 26 -> c is moved.
+token number: 27 -> ; is moved.
+The value of the expression is : 20
+Expression done
+Print live expression Value: 20
+token number: 28 -> if is moved.
+if
+Error: Expected 'int', identifier or 'print'
