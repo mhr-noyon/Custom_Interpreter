@@ -103,6 +103,7 @@ bool loopVariableDefined = false;
 bool loopConditionMatched = false;
 bool loopTraversOneTime = false;
 
+bool breakLoop = false;
 bool disable = false;
 bool disableLoop = false;
 bool oneConditionMatched = false;
@@ -137,7 +138,11 @@ void printOutput(string input)
     }
     if (withinLoop && disableLoop)
     {
-        cerr<<"ohoad";
+        cerr << "ohoad";
+        return;
+    }
+    if (breakLoop)
+    {
         return;
     }
     cout << input;
@@ -160,6 +165,10 @@ string scanInput()
         return "1";
     }
     if (withinLoop && disableLoop)
+    {
+        return "1";
+    }
+    if (breakLoop)
     {
         return "1";
     }

@@ -11,14 +11,11 @@ main:
           comment
           */
      loop i=1:i<5:i=i+1:
-          int f=1;
-          print "enter f: ";
-          scan f;
-          f = f + 5;
-          print i," this is loop";
-          c=c+i;
-          print c;
-          print f;
+          if i <= 2:
+               print "Okay";
+          else:
+               break;
+          endif
      endloop
      print "The final value is: ", c;
 endmain

@@ -357,12 +357,12 @@ int con = 0;
 int expr = 0;
 Token getNextToken()
 {
-     if (withinLoop && checkingCondition)
+     if (withinLoop && checkingCondition && !withinBlock)
      {
           cerr << "token number: " << con << " -> " << loopConditionTokens[con].name << " is moved." << endl;
           return loopConditionTokens[con++];
      }
-     if (withinLoop && checkingExpression)
+     if (withinLoop && checkingExpression && !withinBlock)
      {
           cerr << "token number: " << expr << " -> " << loopExpressionTokens[expr].name << " is moved." << endl;
           return loopExpressionTokens[expr++];

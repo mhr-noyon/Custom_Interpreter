@@ -219,7 +219,7 @@ void setVariableValue(string variable, int value)
 {
      // cerr<<"Variable: "<<variable<<" Value: "<<value<<endl;
      // cerr<<"----------------------------------\n ";
-     cerr<<withinLoop<<" "<<disableLoop<<endl;
+     cerr << withinLoop << " " << disableLoop << endl;
      if (withinLoop)
      {
           if (loopControlVariable.name == variable)
@@ -231,10 +231,10 @@ void setVariableValue(string variable, int value)
      // cerr<<"----------------------------------\n ";
      if (withinLoop && !disableLoop)
      {
-          // cerr<<"ENtered\n";  
+          // cerr<<"ENtered\n";
           for (int i = 0; i < permanentVariables.size(); i++)
           {
-               cerr<<permanentVariables[i].name<<" "<<permanentVariables[i].value<<endl;
+               cerr << permanentVariables[i].name << " " << permanentVariables[i].value << endl;
                if (permanentVariables[i].type == INT && permanentVariables[i].name == variable)
                {
                     permanentVariables[i].value = to_string(value);
@@ -511,7 +511,6 @@ void parseLoop()
      con = 0;
      checkingCondition = true;
      cerr << "Start Loop: " << pos << endl;
-     bool breakLoop = false;
      while (extractCondition() || !loopTraversOneTime)
      {
           checkingCondition = false;
@@ -553,23 +552,34 @@ void parseLoop()
                }
                else if (currentToken.type == KEYWORD && currentToken.name == "if")
                {
-                    cout<<"here"<<endl;
+                    cerr << "here" << endl;
                     parseIf();
                     // cout<<"here"<<endl;
+                    if (oneConditionMatched)
+                    {
+                         transferVariables();
+                         oneConditionMatched = false;
+                    }
+                    disable = false;
+                    lastCondition = "";
                     currentToken = getNextToken();
                }
-               else if(currentToken.type == KEYWORD && currentToken.name == "break"){
+               else if (currentToken.type == KEYWORD && currentToken.name == "break")
+               {
                     disableLoop = true;
-                    for(int i=0;i<permanentVariables.size();i++){
+                    for (int i = 0; i < permanentVariables.size(); i++)
+                    {
                          tempVariables.push_back(permanentVariables[i]);
                     }
-                    cerr<<"Break Loop\n";
+                    cerr << "Break Loop\n";
                     breakLoop = true;
                     currentToken = getNextToken();
-                    if(currentToken.type == SEMICOLON){
+                    if (currentToken.type == SEMICOLON)
+                    {
                          currentToken = getNextToken();
                     }
-                    else{
+                    else
+                    {
                          error("Expected ';' after 'break'");
                     }
                }
@@ -607,12 +617,14 @@ void parseLoop()
           checkingCondition = true;
           transferVariables();
           permanentVariables.clear();
-          if(breakLoop){
+          if (breakLoop)
+          {
                break;
           }
      }
      cerr << "End Loop: " << pos << endl;
      pos = endLoopTokenIndex;
+     breakLoop = false;
 }
 void parseIf()
 {
@@ -623,6 +635,7 @@ void parseIf()
           if (currentToken.name == "if" && lastCondition == "")
           {
                lastCondition = "if";
+               cerr << "Here2\n";
                onlyCheckIf();
           }
           else if (currentToken.name == "elif" && (lastCondition == "if" || lastCondition == "elif"))
@@ -766,6 +779,39 @@ void onlyCheckIf()
                parseScan();
                // cout<<"here"<<endl;
                currentToken = getNextToken();
+          }
+          else if (withinLoop && !disable && currentToken.type == KEYWORD && currentToken.name == "break")
+          {
+               disableLoop = true;
+               disable = true;
+               for (int i = 0; i < permanentVariables.size(); i++)
+               {
+                    tempVariables.push_back(permanentVariables[i]);
+               }
+               cerr << "Break Loop from IF CONDITION-----\n";
+               breakLoop = true;
+               currentToken = getNextToken();
+               if (currentToken.type == SEMICOLON)
+               {
+                    currentToken = getNextToken();
+               }
+               else
+               {
+                    error("Expected ';' after 'break'");
+               }
+          }
+          else if (withinLoop && disable && currentToken.type == KEYWORD && currentToken.name == "break")
+          {
+               currentToken = getNextToken();
+               if (currentToken.type == SEMICOLON)
+               {
+                    currentToken = getNextToken();
+               }
+               else
+               {
+                    error("Expected ';' after 'break'");
+               }
+               continue;
           }
           // else if (currentToken.type == KEYWORD && currentToken.name == "if")
           // {
