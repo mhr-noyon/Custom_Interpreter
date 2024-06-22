@@ -14,6 +14,42 @@ void error(const string &message)
 bool isDeclared(string variable)
 {
      // cout << pos << endl;
+     if (withinLoop)
+     {
+          if (loopControlVariable.name == variable)
+          {
+               return true;
+          }
+     }
+     if (withinLoop && disableLoop)
+     {
+          for (int i = 0; i < tempVariables.size(); i++)
+          {
+               if (tempVariables[i].type == INT && tempVariables[i].name == variable)
+               {
+                    return true;
+               }
+          }
+     }
+     else if (withinLoop && !disableLoop)
+     {
+          for (int i = 0; i < permanentVariables.size(); i++)
+          {
+               if (permanentVariables[i].type == INT && permanentVariables[i].name == variable)
+               {
+                    return true;
+               }
+          }
+          for (int i = 0; i < variables.size(); i++)
+          {
+               if (variables[i].type == INT && variables[i].name == variable)
+               {
+                    return true;
+               }
+          }
+
+          return false;
+     }
      if (withinBlock && disable)
      {
           for (int i = 0; i < tempVariables.size(); i++)
@@ -47,6 +83,41 @@ bool isDeclared(string variable)
 bool isSetValue(string variable)
 {
      // cout<<pos<<endl;
+     if (withinLoop)
+     {
+          if (loopControlVariable.name == variable)
+          {
+               return true;
+          }
+     }
+     if (withinLoop && !disableLoop)
+     {
+          for (int i = 0; i < permanentVariables.size(); i++)
+          {
+               if (permanentVariables[i].type == INT && permanentVariables[i].name == variable && permanentVariables[i].value != "")
+               {
+                    return true;
+               }
+          }
+          for (int i = 0; i < variables.size(); i++)
+          {
+               if (variables[i].type == INT && variables[i].name == variable && variables[i].value != "")
+               {
+                    return true;
+               }
+          }
+          return false;
+     }
+     else if (withinLoop && disableLoop)
+     {
+          for (int i = 0; i < tempVariables.size(); i++)
+          {
+               if (tempVariables[i].type == INT && tempVariables[i].name == variable && tempVariables[i].value != "")
+               {
+                    return true;
+               }
+          }
+     }
      if (withinBlock && disable)
      {
           for (int i = 0; i < tempVariables.size(); i++)
@@ -80,6 +151,41 @@ bool isSetValue(string variable)
 }
 int getVariableValue(string variable)
 {
+     if (withinLoop)
+     {
+          if (loopControlVariable.name == variable)
+          {
+               return stoi(loopControlVariable.value);
+          }
+     }
+     if (withinLoop && !disableLoop)
+     {
+          for (int i = 0; i < permanentVariables.size(); i++)
+          {
+               if (permanentVariables[i].type == INT && permanentVariables[i].name == variable && permanentVariables[i].value != "")
+               {
+                    return stoi(permanentVariables[i].value);
+               }
+          }
+          for (int i = 0; i < variables.size(); i++)
+          {
+               if (variables[i].type == INT && variables[i].name == variable)
+               {
+                    return stoi(variables[i].value);
+               }
+          }
+          return false;
+     }
+     else if (withinLoop && disableLoop)
+     {
+          for (int i = 0; i < tempVariables.size(); i++)
+          {
+               if (tempVariables[i].type == INT && tempVariables[i].name == variable && tempVariables[i].value != "")
+               {
+                    return stoi(tempVariables[i].value);
+               }
+          }
+     }
      if (withinBlock && disable)
      {
           for (int i = 0; i < tempVariables.size(); i++)
@@ -111,11 +217,61 @@ int getVariableValue(string variable)
 }
 void setVariableValue(string variable, int value)
 {
+     // cerr<<"Variable: "<<variable<<" Value: "<<value<<endl;
+     // cerr<<"----------------------------------\n ";
+     cerr<<withinLoop<<" "<<disableLoop<<endl;
+     if (withinLoop)
+     {
+          if (loopControlVariable.name == variable)
+          {
+               loopControlVariable.value = to_string(value);
+               return;
+          }
+     }
+     // cerr<<"----------------------------------\n ";
+     if (withinLoop && !disableLoop)
+     {
+          // cerr<<"ENtered\n";  
+          for (int i = 0; i < permanentVariables.size(); i++)
+          {
+               cerr<<permanentVariables[i].name<<" "<<permanentVariables[i].value<<endl;
+               if (permanentVariables[i].type == INT && permanentVariables[i].name == variable)
+               {
+                    permanentVariables[i].value = to_string(value);
+                    cerr << "Value set: " << permanentVariables[i].name << " " << permanentVariables[i].value << endl;
+                    return;
+               }
+          }
+          for (int i = 0; i < variables.size(); i++)
+          {
+               if (variables[i].type == INT && variables[i].name == variable)
+               {
+                    variables[i].value = to_string(value);
+                    return;
+               }
+          }
+          // permanentVariables.push_back({INT, variable, to_string(value)});
+          return;
+     }
+     // cerr<<"----------------------------------\n ";
+     if (withinLoop && disableLoop)
+     {
+          for (int i = 0; i < tempVariables.size(); i++)
+          {
+               if (tempVariables[i].type == INT && tempVariables[i].name == variable)
+               {
+                    tempVariables[i].value = to_string(value);
+                    return;
+               }
+          }
+          tempVariables.push_back({INT, variable, to_string(value)});
+          return;
+     }
      if (withinBlock && disable)
      {
           for (int i = 0; i < tempVariables.size(); i++)
           {
-               if (tempVariables[i].type == INT && tempVariables[i].name == variable && tempVariables[i].value != "")
+               if (tempVariables[i].type == INT && tempVariables[i].name == variable)
                {
                     tempVariables[i].value = to_string(value);
                     return;
@@ -204,7 +360,7 @@ void parseProgram()
           else if (currentToken.type == KEYWORD && currentToken.name == "print")
           {
                parsePrint();
-               // cout<<"here"<<endl;
+               cerr << " herer------------------" << endl;
                currentToken = getNextToken();
           }
           else if (currentToken.type == KEYWORD && currentToken.name == "scan")
@@ -230,12 +386,233 @@ void parseProgram()
                // cout<<"here"<<endl;
                currentToken = getNextToken();
           }
+          else if (currentToken.type == KEYWORD && currentToken.name == "loop")
+          {
+               parseLoop();
+               cerr << "Loop done\n";
+               withinLoop = false;
+               loopVariableDefined = false;
+               loopConditionMatched = false;
+               loopTraversOneTime = false;
+               loopControlVariable = {INT, "", ""};
+               loopConditionTokens.clear();
+               loopExpressionTokens.clear();
+
+               currentToken = getNextToken();
+          }
           else
           {
                cerr << currentToken.name << endl;
                error("Expected 'int', identifier or 'print'");
           }
      }
+}
+void parseLoop()
+{
+     withinLoop = true;
+     currentToken = getNextToken();
+
+     Token toAssign;
+     if (currentToken.type == KEYWORD && currentToken.name == "int")
+     {
+          loopVariableDefined = true;
+          currentVariableType = INT;
+          currentToken = getNextToken();
+          if (currentToken.type == IDENTIFIER)
+          {
+               toAssign = currentToken;
+               loopControlVariable.type = INT;
+               loopControlVariable.name = currentToken.name;
+               loopControlVariable.value = "";
+          }
+          else
+          {
+               error("Expected identifier after 'int'");
+          }
+     }
+     else if (currentToken.type == IDENTIFIER)
+     {
+          toAssign = currentToken;
+          withinLoop = false;
+          if (!isDeclared(currentToken.name))
+          {
+               error("Variable is not defined");
+          }
+          withinLoop = true;
+          if (isSetValue(currentToken.name))
+          {
+               int value = getVariableValue(currentToken.name);
+               loopControlVariable.type = INT;
+               loopControlVariable.name = currentToken.name;
+               loopControlVariable.value = to_string(value);
+          }
+          else
+          {
+               loopControlVariable.type = INT;
+               loopControlVariable.name = currentToken.name;
+               loopControlVariable.value = "";
+          }
+     }
+     else
+     {
+          error("Expected 'int' or IDENTIFIER after 'loop'");
+     }
+     currentToken = getNextToken();
+     if (currentToken.type == ASSIGN)
+     {
+          int value = parseExpression();
+          setVariableValue(toAssign.name, value);
+     }
+     else
+     {
+          error("Expected assignment after loop variable");
+     }
+     // cerr << "now token: " << currentToken.name << endl;
+     if (currentToken.type == COLON)
+     {
+          currentToken = getNextToken();
+          while (currentToken.type != COLON)
+          {
+               loopConditionTokens.push_back(currentToken);
+               if (currentToken.type != IDENTIFIER && currentToken.type != NUMBER && currentToken.type != PLUS && currentToken.type != MINUS && currentToken.type != MULTIPLY && currentToken.type != DEVIDE && currentToken.type != POWER && currentToken.type != LPAREN && currentToken.type != RPAREN && currentToken.type != EQUAL && currentToken.type != NOT_EQUAL && currentToken.type != LESS_THAN && currentToken.type != GREATER_THAN && currentToken.type != LESS_THAN_EQUAL && currentToken.type != GREATER_THAN_EQUAL && currentToken.type != COLON)
+               {
+                    error("Something wrong in loop condition");
+               }
+               // cout << "Loop condition: " << currentToken.name << endl;
+               currentToken = getNextToken();
+          }
+          loopConditionTokens.push_back(currentToken);
+          // for (int i = 0; i < loopConditionTokens.size(); i++)
+          // {
+          //      cout << loopConditionTokens[i].name << endl;
+          // }
+     }
+     else
+     {
+          error("Expected ':' after loop variable");
+     }
+     currentToken = getNextToken();
+     while (currentToken.type != COLON)
+     {
+          loopExpressionTokens.push_back(currentToken);
+          if (currentToken.type != IDENTIFIER && currentToken.type != NUMBER && currentToken.type != PLUS && currentToken.type != MINUS && currentToken.type != MULTIPLY && currentToken.type != DEVIDE && currentToken.type != POWER && currentToken.type != LPAREN && currentToken.type != RPAREN && currentToken.type != ASSIGN && currentToken.type != COLON)
+          {
+               error("Something wrong in loop condition");
+          }
+          // cout << "Loop condition: " << currentToken.name << endl;
+          currentToken = getNextToken();
+     }
+     loopExpressionTokens.push_back(currentToken);
+     // for (int i = 0; i < loopExpressionTokens.size(); i++)
+     // {
+     //      cout << loopExpressionTokens[i].name << endl;
+     // }
+     startLoopTokenIndex = pos;
+     con = 0;
+     checkingCondition = true;
+     cerr << "Start Loop: " << pos << endl;
+     bool breakLoop = false;
+     while (extractCondition() || !loopTraversOneTime)
+     {
+          checkingCondition = false;
+          pos = startLoopTokenIndex;
+          currentToken = getNextToken();
+          cerr << "Start nested Loop: " << pos << endl;
+          cerr << " token: " << currentToken.name << endl;
+          while (currentToken.name != "endloop")
+          {
+               if (currentToken.type == KEYWORD && currentToken.name == "int")
+               {
+                    parseDeclarations();
+                    currentToken = getNextToken();
+                    for (int i = 0; i < permanentVariables.size(); i++)
+                    {
+                         cerr << permanentVariables[i].name << " " << permanentVariables[i].value << endl;
+                    }
+               }
+               else if (currentToken.type == IDENTIFIER)
+               {
+                    // cerr<<"Here\n";
+                    parseStatement();
+                    currentToken = getNextToken();
+               }
+               else if (currentToken.type == KEYWORD && currentToken.name == "print")
+               {
+                    parsePrint();
+                    // cout << "here" << endl;
+                    // cout << currentToken.name << endl;
+                    // cout<<"here"<<endl;
+                    currentToken = getNextToken();
+                    // cout << currentToken.name << endl;
+               }
+               else if (currentToken.type == KEYWORD && currentToken.name == "scan")
+               {
+                    parseScan();
+                    // cout<<"here"<<endl;
+                    currentToken = getNextToken();
+               }
+               else if (currentToken.type == KEYWORD && currentToken.name == "if")
+               {
+                    cout<<"here"<<endl;
+                    parseIf();
+                    // cout<<"here"<<endl;
+                    currentToken = getNextToken();
+               }
+               else if(currentToken.type == KEYWORD && currentToken.name == "break"){
+                    disableLoop = true;
+                    for(int i=0;i<permanentVariables.size();i++){
+                         tempVariables.push_back(permanentVariables[i]);
+                    }
+                    cerr<<"Break Loop\n";
+                    breakLoop = true;
+                    currentToken = getNextToken();
+                    if(currentToken.type == SEMICOLON){
+                         currentToken = getNextToken();
+                    }
+                    else{
+                         error("Expected ';' after 'break'");
+                    }
+               }
+               else
+               {
+                    error("Expected 'int', identifier,'scan' or 'print'");
+               }
+          }
+          endLoopTokenIndex = pos;
+          cerr << "end nested Loop: " << pos << endl;
+          loopTraversOneTime = true;
+          checkingExpression = true;
+          expr = 0;
+          currentToken = getNextToken();
+          if (currentToken.type == IDENTIFIER)
+          {
+               toAssign = currentToken;
+               currentToken = getNextToken();
+               if (currentToken.type == ASSIGN)
+               {
+                    int value = parseExpression();
+                    setVariableValue(toAssign.name, value);
+               }
+               else
+               {
+                    error("Expected assignment after loop variable");
+               }
+          }
+          else
+          {
+               error("Expected identifier after 'endloop'");
+          }
+          con = 0;
+          checkingExpression = false;
+          checkingCondition = true;
+          transferVariables();
+          permanentVariables.clear();
+          if(breakLoop){
+               break;
+          }
+     }
+     cerr << "End Loop: " << pos << endl;
+     pos = endLoopTokenIndex;
 }
 void parseIf()
 {
@@ -320,15 +697,20 @@ bool extractCondition()
      rightValue = parseExpression();
      checkingCondition = false;
      bool flag = true;
+     disableLoop = false;
      if (!checkCondition(leftValue, operation, rightValue) || oneConditionMatched)
      {
-          disable = true;
+          if (withinBlock)
+               disable = true;
+          else if (withinLoop)
+               disableLoop = true;
           flag = false;
      }
-     if (!disable)
+     if (!disable && withinBlock)
      {
           oneConditionMatched = true;
      }
+     cerr << "condition: " << flag << endl;
      return flag;
 }
 void onlyCheckIf()
@@ -418,6 +800,14 @@ void parseDeclarations()
                {
                     permanentVariables.push_back({INT, currentToken.name, ""});
                }
+               else if (withinLoop && disableLoop)
+               {
+                    tempVariables.push_back({INT, currentToken.name, ""});
+               }
+               else if (withinLoop && !disableLoop)
+               {
+                    permanentVariables.push_back({INT, currentToken.name, ""});
+               }
                else
                {
                     variables.push_back({INT, currentToken.name, ""});
@@ -430,6 +820,7 @@ void parseDeclarations()
                Token toAssign = previousToken;
                int value = parseExpression();
                setVariableValue(toAssign.name, value);
+
                assign = true;
           }
 
@@ -605,6 +996,10 @@ int parseExpression()
                     tillRParen();
                }
                else if ((currentToken.type == SEMICOLON || currentToken.type == COMMA) && (previousToken.type == IDENTIFIER || previousToken.type == NUMBER || previousToken.type == RPAREN))
+               {
+                    break;
+               }
+               else if (withinLoop && currentToken.type == COLON)
                {
                     break;
                }

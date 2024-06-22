@@ -83,6 +83,11 @@ void onlyCheckIf();
 void parseIf();
 bool extractCondition();
 
+// for loop
+void parseLoop();
+int startLoopTokenIndex;
+int endLoopTokenIndex;
+
 string scanInput();
 
 bool isInteger(string &str);
@@ -91,7 +96,15 @@ void tillRParen();
 void transferVariables();
 bool checkingCondition = false;
 bool withinBlock = false;
+
+bool checkingExpression = false;
+bool withinLoop = false;
+bool loopVariableDefined = false;
+bool loopConditionMatched = false;
+bool loopTraversOneTime = false;
+
 bool disable = false;
+bool disableLoop = false;
 bool oneConditionMatched = false;
 string lastCondition = "";
 //----------------------Methods in parser.h--------------------
@@ -122,6 +135,11 @@ void printOutput(string input)
     {
         return;
     }
+    if (withinLoop && disableLoop)
+    {
+        cerr<<"ohoad";
+        return;
+    }
     cout << input;
     // FILE *fp = fopen("./output.txt", "a");
     // if (fp == NULL)
@@ -138,6 +156,10 @@ void printOutput(string input)
 string scanInput()
 {
     if (withinBlock && disable)
+    {
+        return "1";
+    }
+    if (withinLoop && disableLoop)
     {
         return "1";
     }

@@ -25,6 +25,7 @@ enum TokenType
      LESS_THAN_EQUAL,
      AND,
      OR,
+     TERMINATE,
      END
 };
 // Token structure
@@ -47,9 +48,12 @@ struct Variable
 };
 // Global variables
 vector<Token> tokens;
+vector<Token> loopConditionTokens;
+vector<Token> loopExpressionTokens;
 vector<Variable> variables;
 vector<Variable> tempVariables;
 vector<Variable> permanentVariables;
+Variable loopControlVariable;
 
 queue<Token> expression;
 // size_t pos = 0;
@@ -63,7 +67,7 @@ int typeFlag;
 
 bool isKeyword(char *str)
 {
-     char keywords[14][10] = {"int", "string", "for", "break", "continue", "main", "if", "elif", "else", "print", "scan", "endif", "endfor", "endmain"};
+     char keywords[14][10] = {"int", "string", "loop", "break", "continue", "main", "if", "elif", "else", "print", "scan", "endif", "endloop", "endmain"};
 
      for (int i = 0; i < 14; i++)
      {
@@ -349,15 +353,27 @@ void printTokens()
      cerr << "\n\n";
 }
 int pos = 0;
+int con = 0;
+int expr = 0;
 Token getNextToken()
 {
-     if (pos < tokens.size())
+     if (withinLoop && checkingCondition)
      {
-          cerr << "token number: " << pos << " -> " << tokens[pos].name << " is moved." << endl;
-          return tokens[pos++];
+          cerr << "token number: " << con << " -> " << loopConditionTokens[con].name << " is moved." << endl;
+          return loopConditionTokens[con++];
      }
-     else
+     if (withinLoop && checkingExpression)
      {
-          return {END, ""};
+          cerr << "token number: " << expr << " -> " << loopExpressionTokens[expr].name << " is moved." << endl;
+          return loopExpressionTokens[expr++];
      }
+     // if (pos < tokens.size())
+     // {
+     cerr << "token number: " << pos << " -> " << tokens[pos].name << " is moved." << endl;
+     return tokens[pos++];
+     // }
+     // else
+     // {
+     //      return {END, ""};
+     // }
 }

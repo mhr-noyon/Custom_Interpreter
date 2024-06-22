@@ -19,6 +19,10 @@ int converterExpression()
      {
           return 1;
      }
+     if (withinLoop && disableLoop)
+     {
+          return 1;
+     }
      stack<Token> stk;
      while (!expression.empty())
      {

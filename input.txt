@@ -1,17 +1,26 @@
 // > < >= <= ==
 main:
-int a=10, c=1, b=5*2^2; 
-print "Enter the value of a: ";
-scan d;
-scan a;
-print 5/1 * 5," ", b*c;
-if a >= b:
-     int d=3;
-     a = d + a;
-     print a;
-elif b==c:
-     int d=6;
-     print b;
-     print a;
-endif
+     int a=10, c=1, b=5*2^2,d; 
+     print "Enter the value of a: ";
+     print 5/1 * 5," ", b*c;
+     int i;
+     if 5<6^2:
+          print "YES";
+     endif
+     /* This is multiline
+          comment
+          */
+     loop i=1:i<5:i=i+1:
+          int f=1;
+          print "enter f: ";
+          scan f;
+          f = f + 5;
+          print i," this is loop";
+          c=c+i;
+          print c;
+          print f;
+     endloop
+     print "The final value is: ", c;
 endmain
+
+
