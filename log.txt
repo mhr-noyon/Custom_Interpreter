@@ -1,24 +1,29 @@
-Line: // > < >= <= ==
 Line: main:
-Line:      int a=10, c=1, b=5*2^2,d; 
-Line:      print "Enter the value of a: ";
-Line:      print 5/1 * 5," ", b*c;
-Line:      int i;
-Line:      if 5<6^2:
+Line:      int x=3;
+Line:      scan x;
+Line:      if x >= 5:
 Line:           print "YES";
+Line:      else:
+Line:           print "NO";
 Line:      endif
-Line:      /* This is multiline
-Line:           comment
-Line:           */
-Line:      loop i=1:i<5:i=i+1:
-Line:           if i <= 2:
-Line:                print "Okay";
+Line:      loop int i=1: i<10: i=i+1:
+Line:           if i<5:
+Line:                print "Less than 5";
+Line:                x = x + i;
+Line:                print x;
 Line:           else:
 Line:                break;
 Line:           endif
 Line:      endloop
-Line:      print "The final value is: ", c;
+Line:      x = x + 5;
+Line:      print "After loop, the value of x is: ";
+Line:      print x;
+Line:      x = x ^ 2 + 1;
+Line:      print "Final value of x is: ";
+Line:      print x;
 Line: endmain
+Line: 
+Line: 
 Line: 
 Line: 
 
@@ -27,325 +32,515 @@ Tokens:
 0th Token: KEYWORD, main
 1th Token: COLON, :
 2th Token: KEYWORD, int
-3th Token: IDENTIFIER, a
+3th Token: IDENTIFIER, x
 4th Token: ASSIGN, =
-5th Token: NUMBER, 10
-6th Token: COMMA, ,
-7th Token: IDENTIFIER, c
-8th Token: ASSIGN, =
-9th Token: NUMBER, 1
-10th Token: COMMA, ,
-11th Token: IDENTIFIER, b
-12th Token: ASSIGN, =
+5th Token: NUMBER, 3
+6th Token: SEMICOLON, ;
+7th Token: KEYWORD, scan
+8th Token: IDENTIFIER, x
+9th Token: SEMICOLON, ;
+10th Token: KEYWORD, if
+11th Token: IDENTIFIER, x
+12th Token: GREATER_THAN_EQUAL, >=
 13th Token: NUMBER, 5
-14th Token: MULTIPLY, *
-15th Token: NUMBER, 2
-16th Token: POWER, ^
-17th Token: NUMBER, 2
-18th Token: COMMA, ,
-19th Token: IDENTIFIER, d
-20th Token: SEMICOLON, ;
-21th Token: KEYWORD, print
-22th Token: QUOTE, Enter the value of a: 
-23th Token: SEMICOLON, ;
-24th Token: KEYWORD, print
-25th Token: NUMBER, 5
-26th Token: DEVIDE, /
-27th Token: NUMBER, 1
-28th Token: MULTIPLY, *
-29th Token: NUMBER, 5
-30th Token: COMMA, ,
-31th Token: QUOTE,  
-32th Token: COMMA, ,
-33th Token: IDENTIFIER, b
-34th Token: MULTIPLY, *
-35th Token: IDENTIFIER, c
-36th Token: SEMICOLON, ;
-37th Token: KEYWORD, int
-38th Token: IDENTIFIER, i
-39th Token: SEMICOLON, ;
+14th Token: COLON, :
+15th Token: KEYWORD, print
+16th Token: QUOTE, YES
+17th Token: SEMICOLON, ;
+18th Token: KEYWORD, else
+19th Token: COLON, :
+20th Token: KEYWORD, print
+21th Token: QUOTE, NO
+22th Token: SEMICOLON, ;
+23th Token: KEYWORD, endif
+24th Token: KEYWORD, loop
+25th Token: KEYWORD, int
+26th Token: IDENTIFIER, i
+27th Token: ASSIGN, =
+28th Token: NUMBER, 1
+29th Token: COLON, :
+30th Token: IDENTIFIER, i
+31th Token: LESS_THAN, <
+32th Token: NUMBER, 10
+33th Token: COLON, :
+34th Token: IDENTIFIER, i
+35th Token: ASSIGN, =
+36th Token: IDENTIFIER, i
+37th Token: PLUS, +
+38th Token: NUMBER, 1
+39th Token: COLON, :
 40th Token: KEYWORD, if
-41th Token: NUMBER, 5
+41th Token: IDENTIFIER, i
 42th Token: LESS_THAN, <
-43th Token: NUMBER, 6
-44th Token: POWER, ^
-45th Token: NUMBER, 2
-46th Token: COLON, :
-47th Token: KEYWORD, print
-48th Token: QUOTE, YES
-49th Token: SEMICOLON, ;
-50th Token: KEYWORD, endif
-51th Token: KEYWORD, loop
+43th Token: NUMBER, 5
+44th Token: COLON, :
+45th Token: KEYWORD, print
+46th Token: QUOTE, Less than 5
+47th Token: SEMICOLON, ;
+48th Token: IDENTIFIER, x
+49th Token: ASSIGN, =
+50th Token: IDENTIFIER, x
+51th Token: PLUS, +
 52th Token: IDENTIFIER, i
-53th Token: ASSIGN, =
-54th Token: NUMBER, 1
-55th Token: COLON, :
-56th Token: IDENTIFIER, i
-57th Token: LESS_THAN, <
-58th Token: NUMBER, 5
-59th Token: COLON, :
-60th Token: IDENTIFIER, i
-61th Token: ASSIGN, =
-62th Token: IDENTIFIER, i
-63th Token: PLUS, +
-64th Token: NUMBER, 1
-65th Token: COLON, :
-66th Token: KEYWORD, if
-67th Token: IDENTIFIER, i
-68th Token: LESS_THAN_EQUAL, <=
-69th Token: NUMBER, 2
-70th Token: COLON, :
-71th Token: KEYWORD, print
-72th Token: QUOTE, Okay
-73th Token: SEMICOLON, ;
-74th Token: KEYWORD, else
-75th Token: COLON, :
-76th Token: KEYWORD, break
-77th Token: SEMICOLON, ;
-78th Token: KEYWORD, endif
-79th Token: KEYWORD, endloop
-80th Token: KEYWORD, print
-81th Token: QUOTE, The final value is: 
-82th Token: COMMA, ,
-83th Token: IDENTIFIER, c
-84th Token: SEMICOLON, ;
-85th Token: END, 
+53th Token: SEMICOLON, ;
+54th Token: KEYWORD, print
+55th Token: IDENTIFIER, x
+56th Token: SEMICOLON, ;
+57th Token: KEYWORD, else
+58th Token: COLON, :
+59th Token: KEYWORD, break
+60th Token: SEMICOLON, ;
+61th Token: KEYWORD, endif
+62th Token: KEYWORD, endloop
+63th Token: IDENTIFIER, x
+64th Token: ASSIGN, =
+65th Token: IDENTIFIER, x
+66th Token: PLUS, +
+67th Token: NUMBER, 5
+68th Token: SEMICOLON, ;
+69th Token: KEYWORD, print
+70th Token: QUOTE, After loop, the value of x is: 
+71th Token: SEMICOLON, ;
+72th Token: KEYWORD, print
+73th Token: IDENTIFIER, x
+74th Token: SEMICOLON, ;
+75th Token: IDENTIFIER, x
+76th Token: ASSIGN, =
+77th Token: IDENTIFIER, x
+78th Token: POWER, ^
+79th Token: NUMBER, 2
+80th Token: PLUS, +
+81th Token: NUMBER, 1
+82th Token: SEMICOLON, ;
+83th Token: KEYWORD, print
+84th Token: QUOTE, Final value of x is: 
+85th Token: SEMICOLON, ;
+86th Token: KEYWORD, print
+87th Token: IDENTIFIER, x
+88th Token: SEMICOLON, ;
+89th Token: END, 
 
 
 token number: 0 -> main is moved.
 token number: 1 -> : is moved.
 token number: 2 -> int is moved.
-token number: 3 -> a is moved.
+token number: 3 -> x is moved.
 token number: 4 -> = is moved.
-token number: 5 -> 10 is moved.
-token number: 6 -> , is moved.
-The value of the expression is : 10
-Expression done
+token number: 5 -> 3 is moved.
+token number: 6 -> ; is moved.
+The value of the expression is : 3
+3Expression done
 0 0
-token number: 7 -> c is moved.
-token number: 8 -> = is moved.
-token number: 9 -> 1 is moved.
-token number: 10 -> , is moved.
-The value of the expression is : 1
-Expression done
+token number: 7 -> scan is moved.
+token number: 8 -> x is moved.
 0 0
-token number: 11 -> b is moved.
-token number: 12 -> = is moved.
-token number: 13 -> 5 is moved.
-token number: 14 -> * is moved.
-token number: 15 -> 2 is moved.
-token number: 16 -> ^ is moved.
-token number: 17 -> 2 is moved.
-token number: 18 -> , is moved.
-The value of the expression is : 20
-Expression done
-0 0
-token number: 19 -> d is moved.
-token number: 20 -> ; is moved.
-token number: 21 -> print is moved.
-token number: 22 -> Enter the value of a:  is moved.
-token number: 23 -> ; is moved.
-Print Value: Enter the value of a: 
- herer------------------
-token number: 24 -> print is moved.
-token number: 25 -> 5 is moved.
-token number: 26 -> / is moved.
-token number: 27 -> 1 is moved.
-token number: 28 -> * is moved.
-token number: 29 -> 5 is moved.
-token number: 30 -> , is moved.
-The value of the expression is : 25
-Expression done
-Print live expression Value: 25
-token number: 31 ->   is moved.
-token number: 32 -> , is moved.
-Print Value:  
-token number: 33 -> b is moved.
-token number: 34 -> * is moved.
-token number: 35 -> c is moved.
-token number: 36 -> ; is moved.
-The value of the expression is : 20
-Expression done
-Print live expression Value: 20
- herer------------------
-token number: 37 -> int is moved.
-token number: 38 -> i is moved.
-token number: 39 -> ; is moved.
-token number: 40 -> if is moved.
+token number: 9 -> ; is moved.
+token number: 10 -> if is moved.
 Here2
-token number: 41 -> 5 is moved.
+token number: 11 -> x is moved.
+token number: 12 -> >= is moved.
+The value of the expression is : 6
+6Expression done
+token number: 13 -> 5 is moved.
+token number: 14 -> : is moved.
+The value of the expression is : 5
+5Expression done
+condition: 1
+token number: 15 -> print is moved.
+token number: 16 -> YES is moved.
+token number: 17 -> ; is moved.
+Print Value: YES
+token number: 18 -> else is moved.
+token number: 19 -> : is moved.
+token number: 20 -> print is moved.
+token number: 21 -> NO is moved.
+token number: 22 -> ; is moved.
+Print Value: NO
+token number: 23 -> endif is moved.
+-----------
+-----------
+ghurtaseeeeeeee
+token number: 24 -> loop is moved.
+token number: 25 -> int is moved.
+token number: 26 -> i is moved.
+token number: 27 -> = is moved.
+token number: 28 -> 1 is moved.
+token number: 29 -> : is moved.
+The value of the expression is : 1
+1Expression done
+1 0
+token number: 30 -> i is moved.
+token number: 31 -> < is moved.
+token number: 32 -> 10 is moved.
+token number: 33 -> : is moved.
+token number: 34 -> i is moved.
+token number: 35 -> = is moved.
+token number: 36 -> i is moved.
+token number: 37 -> + is moved.
+token number: 38 -> 1 is moved.
+token number: 39 -> : is moved.
+Start Loop: 40
+token number: 0 -> i is moved.
+token number: 1 -> < is moved.
+The value of the expression is : 1
+1Expression done
+token number: 2 -> 10 is moved.
+token number: 3 -> : is moved.
+The value of the expression is : 10
+10Expression done
+condition: 1
+token number: 40 -> if is moved.
+Start nested Loop: 41
+ token: if
+here
+Here2
+token number: 41 -> i is moved.
+token number: 42 -> < is moved.
+The value of the expression is : 1
+1Expression done
+token number: 43 -> 5 is moved.
+token number: 44 -> : is moved.
+The value of the expression is : 5
+5Expression done
+condition: 1
+token number: 45 -> print is moved.
+token number: 46 -> Less than 5 is moved.
+token number: 47 -> ; is moved.
+Print Value: Less than 5
+token number: 48 -> x is moved.
+token number: 49 -> = is moved.
+token number: 50 -> x is moved.
+token number: 51 -> + is moved.
+token number: 52 -> i is moved.
+token number: 53 -> ; is moved.
+---------Variable: x 6
+The value of the expression is : 7
+7Expression done
+1 0
+token number: 54 -> print is moved.
+token number: 55 -> x is moved.
+token number: 56 -> ; is moved.
+Print Value: 7
+token number: 57 -> else is moved.
+token number: 58 -> : is moved.
+token number: 59 -> break is moved.
+token number: 60 -> ; is moved.
+token number: 61 -> endif is moved.
+1-----------
+i-----------
+ghurtaseeeeeeee
+token number: 62 -> endloop is moved.
+end nested Loop: 63
+token number: 0 -> i is moved.
+token number: 1 -> = is moved.
+token number: 2 -> i is moved.
+token number: 3 -> + is moved.
+token number: 4 -> 1 is moved.
+token number: 5 -> : is moved.
+The value of the expression is : 2
+2Expression done
+1 0
+2-----------
+i-----------
+ghurtaseeeeeeee
+token number: 0 -> i is moved.
+token number: 1 -> < is moved.
+The value of the expression is : 2
+2Expression done
+token number: 2 -> 10 is moved.
+token number: 3 -> : is moved.
+The value of the expression is : 10
+10Expression done
+condition: 1
+token number: 40 -> if is moved.
+Start nested Loop: 41
+ token: if
+here
+Here2
+token number: 41 -> i is moved.
+token number: 42 -> < is moved.
+The value of the expression is : 2
+2Expression done
+token number: 43 -> 5 is moved.
+token number: 44 -> : is moved.
+The value of the expression is : 5
+5Expression done
+condition: 1
+token number: 45 -> print is moved.
+token number: 46 -> Less than 5 is moved.
+token number: 47 -> ; is moved.
+Print Value: Less than 5
+token number: 48 -> x is moved.
+token number: 49 -> = is moved.
+token number: 50 -> x is moved.
+token number: 51 -> + is moved.
+token number: 52 -> i is moved.
+token number: 53 -> ; is moved.
+---------Variable: x 7
+The value of the expression is : 9
+9Expression done
+1 0
+token number: 54 -> print is moved.
+token number: 55 -> x is moved.
+token number: 56 -> ; is moved.
+Print Value: 9
+token number: 57 -> else is moved.
+token number: 58 -> : is moved.
+token number: 59 -> break is moved.
+token number: 60 -> ; is moved.
+token number: 61 -> endif is moved.
+2-----------
+i-----------
+ghurtaseeeeeeee
+token number: 62 -> endloop is moved.
+end nested Loop: 63
+token number: 0 -> i is moved.
+token number: 1 -> = is moved.
+token number: 2 -> i is moved.
+token number: 3 -> + is moved.
+token number: 4 -> 1 is moved.
+token number: 5 -> : is moved.
+The value of the expression is : 3
+3Expression done
+1 0
+3-----------
+i-----------
+ghurtaseeeeeeee
+token number: 0 -> i is moved.
+token number: 1 -> < is moved.
+The value of the expression is : 3
+3Expression done
+token number: 2 -> 10 is moved.
+token number: 3 -> : is moved.
+The value of the expression is : 10
+10Expression done
+condition: 1
+token number: 40 -> if is moved.
+Start nested Loop: 41
+ token: if
+here
+Here2
+token number: 41 -> i is moved.
+token number: 42 -> < is moved.
+The value of the expression is : 3
+3Expression done
+token number: 43 -> 5 is moved.
+token number: 44 -> : is moved.
+The value of the expression is : 5
+5Expression done
+condition: 1
+token number: 45 -> print is moved.
+token number: 46 -> Less than 5 is moved.
+token number: 47 -> ; is moved.
+Print Value: Less than 5
+token number: 48 -> x is moved.
+token number: 49 -> = is moved.
+token number: 50 -> x is moved.
+token number: 51 -> + is moved.
+token number: 52 -> i is moved.
+token number: 53 -> ; is moved.
+---------Variable: x 9
+The value of the expression is : 12
+12Expression done
+1 0
+token number: 54 -> print is moved.
+token number: 55 -> x is moved.
+token number: 56 -> ; is moved.
+Print Value: 12
+token number: 57 -> else is moved.
+token number: 58 -> : is moved.
+token number: 59 -> break is moved.
+token number: 60 -> ; is moved.
+token number: 61 -> endif is moved.
+3-----------
+i-----------
+ghurtaseeeeeeee
+token number: 62 -> endloop is moved.
+end nested Loop: 63
+token number: 0 -> i is moved.
+token number: 1 -> = is moved.
+token number: 2 -> i is moved.
+token number: 3 -> + is moved.
+token number: 4 -> 1 is moved.
+token number: 5 -> : is moved.
+The value of the expression is : 4
+4Expression done
+1 0
+4-----------
+i-----------
+ghurtaseeeeeeee
+token number: 0 -> i is moved.
+token number: 1 -> < is moved.
+The value of the expression is : 4
+4Expression done
+token number: 2 -> 10 is moved.
+token number: 3 -> : is moved.
+The value of the expression is : 10
+10Expression done
+condition: 1
+token number: 40 -> if is moved.
+Start nested Loop: 41
+ token: if
+here
+Here2
+token number: 41 -> i is moved.
+token number: 42 -> < is moved.
+The value of the expression is : 4
+4Expression done
+token number: 43 -> 5 is moved.
+token number: 44 -> : is moved.
+The value of the expression is : 5
+5Expression done
+condition: 1
+token number: 45 -> print is moved.
+token number: 46 -> Less than 5 is moved.
+token number: 47 -> ; is moved.
+Print Value: Less than 5
+token number: 48 -> x is moved.
+token number: 49 -> = is moved.
+token number: 50 -> x is moved.
+token number: 51 -> + is moved.
+token number: 52 -> i is moved.
+token number: 53 -> ; is moved.
+---------Variable: x 12
+The value of the expression is : 16
+16Expression done
+1 0
+token number: 54 -> print is moved.
+token number: 55 -> x is moved.
+token number: 56 -> ; is moved.
+Print Value: 16
+token number: 57 -> else is moved.
+token number: 58 -> : is moved.
+token number: 59 -> break is moved.
+token number: 60 -> ; is moved.
+token number: 61 -> endif is moved.
+4-----------
+i-----------
+ghurtaseeeeeeee
+token number: 62 -> endloop is moved.
+end nested Loop: 63
+token number: 0 -> i is moved.
+token number: 1 -> = is moved.
+token number: 2 -> i is moved.
+token number: 3 -> + is moved.
+token number: 4 -> 1 is moved.
+token number: 5 -> : is moved.
+The value of the expression is : 5
+5Expression done
+1 0
+5-----------
+i-----------
+ghurtaseeeeeeee
+token number: 0 -> i is moved.
+token number: 1 -> < is moved.
+The value of the expression is : 5
+5Expression done
+token number: 2 -> 10 is moved.
+token number: 3 -> : is moved.
+The value of the expression is : 10
+10Expression done
+condition: 1
+token number: 40 -> if is moved.
+Start nested Loop: 41
+ token: if
+here
+Here2
+token number: 41 -> i is moved.
 token number: 42 -> < is moved.
 The value of the expression is : 5
-Expression done
-token number: 43 -> 6 is moved.
-token number: 44 -> ^ is moved.
-token number: 45 -> 2 is moved.
-token number: 46 -> : is moved.
-The value of the expression is : 36
-Expression done
-condition: 1
-token number: 47 -> print is moved.
-token number: 48 -> YES is moved.
-token number: 49 -> ; is moved.
-Print Value: YES
-token number: 50 -> endif is moved.
-token number: 51 -> loop is moved.
-token number: 52 -> i is moved.
-token number: 53 -> = is moved.
-token number: 54 -> 1 is moved.
-token number: 55 -> : is moved.
-The value of the expression is : 1
-Expression done
-1 0
-token number: 56 -> i is moved.
-token number: 57 -> < is moved.
-token number: 58 -> 5 is moved.
-token number: 59 -> : is moved.
-token number: 60 -> i is moved.
-token number: 61 -> = is moved.
-token number: 62 -> i is moved.
-token number: 63 -> + is moved.
-token number: 64 -> 1 is moved.
-token number: 65 -> : is moved.
-Start Loop: 66
-token number: 0 -> i is moved.
-token number: 1 -> < is moved.
-The value of the expression is : 1
-Expression done
-token number: 2 -> 5 is moved.
-token number: 3 -> : is moved.
+5Expression done
+token number: 43 -> 5 is moved.
+token number: 44 -> : is moved.
 The value of the expression is : 5
-Expression done
-condition: 1
-token number: 66 -> if is moved.
-Start nested Loop: 67
- token: if
-here
-Here2
-token number: 67 -> i is moved.
-token number: 68 -> <= is moved.
-The value of the expression is : 1
-Expression done
-token number: 69 -> 2 is moved.
-token number: 70 -> : is moved.
-The value of the expression is : 2
-Expression done
-condition: 1
-token number: 71 -> print is moved.
-token number: 72 -> Okay is moved.
-token number: 73 -> ; is moved.
-Print Value: Okay
-token number: 74 -> else is moved.
-token number: 75 -> : is moved.
-token number: 76 -> break is moved.
-token number: 77 -> ; is moved.
-token number: 78 -> endif is moved.
-token number: 79 -> endloop is moved.
-end nested Loop: 80
-token number: 0 -> i is moved.
-token number: 1 -> = is moved.
-token number: 2 -> i is moved.
-token number: 3 -> + is moved.
-token number: 4 -> 1 is moved.
-token number: 5 -> : is moved.
-The value of the expression is : 2
-Expression done
-1 0
-token number: 0 -> i is moved.
-token number: 1 -> < is moved.
-The value of the expression is : 2
-Expression done
-token number: 2 -> 5 is moved.
-token number: 3 -> : is moved.
-The value of the expression is : 5
-Expression done
-condition: 1
-token number: 66 -> if is moved.
-Start nested Loop: 67
- token: if
-here
-Here2
-token number: 67 -> i is moved.
-token number: 68 -> <= is moved.
-The value of the expression is : 2
-Expression done
-token number: 69 -> 2 is moved.
-token number: 70 -> : is moved.
-The value of the expression is : 2
-Expression done
-condition: 1
-token number: 71 -> print is moved.
-token number: 72 -> Okay is moved.
-token number: 73 -> ; is moved.
-Print Value: Okay
-token number: 74 -> else is moved.
-token number: 75 -> : is moved.
-token number: 76 -> break is moved.
-token number: 77 -> ; is moved.
-token number: 78 -> endif is moved.
-token number: 79 -> endloop is moved.
-end nested Loop: 80
-token number: 0 -> i is moved.
-token number: 1 -> = is moved.
-token number: 2 -> i is moved.
-token number: 3 -> + is moved.
-token number: 4 -> 1 is moved.
-token number: 5 -> : is moved.
-The value of the expression is : 3
-Expression done
-1 0
-token number: 0 -> i is moved.
-token number: 1 -> < is moved.
-The value of the expression is : 3
-Expression done
-token number: 2 -> 5 is moved.
-token number: 3 -> : is moved.
-The value of the expression is : 5
-Expression done
-condition: 1
-token number: 66 -> if is moved.
-Start nested Loop: 67
- token: if
-here
-Here2
-token number: 67 -> i is moved.
-token number: 68 -> <= is moved.
-The value of the expression is : 3
-Expression done
-token number: 69 -> 2 is moved.
-token number: 70 -> : is moved.
-The value of the expression is : 2
-Expression done
+5Expression done
 condition: 0
-token number: 71 -> print is moved.
-token number: 72 -> Okay is moved.
-token number: 73 -> ; is moved.
-Print Value: Okay
-token number: 74 -> else is moved.
-token number: 75 -> : is moved.
-token number: 76 -> break is moved.
+token number: 45 -> print is moved.
+token number: 46 -> Less than 5 is moved.
+token number: 47 -> ; is moved.
+Print Value: Less than 5
+token number: 48 -> x is moved.
+token number: 49 -> = is moved.
+token number: 50 -> x is moved.
+token number: 51 -> + is moved.
+token number: 52 -> i is moved.
+token number: 53 -> ; is moved.
+1Expression done
+1 0
+token number: 54 -> print is moved.
+token number: 55 -> x is moved.
+token number: 56 -> ; is moved.
+---------Variable: x 16
+Print Value: 16
+token number: 57 -> else is moved.
+token number: 58 -> : is moved.
+token number: 59 -> break is moved.
+5-----------
+i-----------
+ghurtaseeeeeeee
 Break Loop from IF CONDITION-----
-token number: 77 -> ; is moved.
-token number: 78 -> endif is moved.
-token number: 79 -> endloop is moved.
-end nested Loop: 80
+token number: 60 -> ; is moved.
+token number: 61 -> endif is moved.
+5-----------
+i-----------
+ghurtaseeeeeeee
+token number: 62 -> endloop is moved.
+end nested Loop: 63
 token number: 0 -> i is moved.
 token number: 1 -> = is moved.
 token number: 2 -> i is moved.
 token number: 3 -> + is moved.
 token number: 4 -> 1 is moved.
 token number: 5 -> : is moved.
-Expression done
+1Expression done
 1 1
-End Loop: 80
+1-----------
+i-----------
+ghurtaseeeeeeee
+1-----------
+i-----------
+ghurtaseeeeeeee
+End Loop: 63
 Loop done
-token number: 80 -> print is moved.
-token number: 81 -> The final value is:  is moved.
-token number: 82 -> , is moved.
-Print Value: The final value is: 
-token number: 83 -> c is moved.
-token number: 84 -> ; is moved.
-Print Value: 1
+token number: 63 -> x is moved.
+token number: 64 -> = is moved.
+token number: 65 -> x is moved.
+token number: 66 -> + is moved.
+token number: 67 -> 5 is moved.
+token number: 68 -> ; is moved.
+The value of the expression is : 21
+21Expression done
+0 0
+token number: 69 -> print is moved.
+token number: 70 -> After loop, the value of x is:  is moved.
+token number: 71 -> ; is moved.
+Print Value: After loop, the value of x is: 
  herer------------------
-token number: 85 ->  is moved.
+token number: 72 -> print is moved.
+token number: 73 -> x is moved.
+token number: 74 -> ; is moved.
+Print Value: 21
+ herer------------------
+token number: 75 -> x is moved.
+token number: 76 -> = is moved.
+token number: 77 -> x is moved.
+token number: 78 -> ^ is moved.
+token number: 79 -> 2 is moved.
+token number: 80 -> + is moved.
+token number: 81 -> 1 is moved.
+token number: 82 -> ; is moved.
+The value of the expression is : 442
+442Expression done
+0 0
+token number: 83 -> print is moved.
+token number: 84 -> Final value of x is:  is moved.
+token number: 85 -> ; is moved.
+Print Value: Final value of x is: 
+ herer------------------
+token number: 86 -> print is moved.
+token number: 87 -> x is moved.
+token number: 88 -> ; is moved.
+Print Value: 442
+ herer------------------
+token number: 89 ->  is moved.
 The program is valid.

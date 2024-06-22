@@ -17,14 +17,17 @@ int converterExpression()
 {
      if (withinBlock && disable)
      {
+          // cout << "here11111\n";
           return 1;
      }
      if (withinLoop && disableLoop)
      {
+          // cout << "here2222\n";
           return 1;
      }
      if (breakLoop)
      {
+          // cout << "here3\n";
           return 1;
      }
      stack<Token> stk;
@@ -101,7 +104,7 @@ int calc()
           {
                if (!isDeclared(it.name))
                {
-                    // cout<<"Variable "<<it.name<<" is not declared\n";
+                    // cout << "Variable " << it.name << " is not declared\n";
                     error("Variable is used before declaration");
                }
                if (!isSetValue(it.name))
@@ -144,7 +147,9 @@ int calc()
           }
      }
      // cout << operandStack.top() << endl;
-     return operandStack.top();
+     int val = operandStack.top();
+     operandStack.pop();
+     return val;
 }
 // int main()
 // {

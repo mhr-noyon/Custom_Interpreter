@@ -138,13 +138,14 @@ void printOutput(string input)
     }
     if (withinLoop && disableLoop)
     {
-        cerr << "ohoad";
+        // cerr << "ohoad";
         return;
     }
     if (breakLoop)
     {
         return;
     }
+    // cout<<endl<<withinLoop<<" "<<disableLoop<<endl;
     cout << input;
     // FILE *fp = fopen("./output.txt", "a");
     // if (fp == NULL)
