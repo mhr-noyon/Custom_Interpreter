@@ -1,7 +1,6 @@
 
 enum TokenType
 {
-     MAIN,
      IDENTIFIER,
      NUMBER,
      COLON,
@@ -25,7 +24,6 @@ enum TokenType
      LESS_THAN_EQUAL,
      AND,
      OR,
-     TERMINATE,
      END
 };
 // Token structure
@@ -48,6 +46,7 @@ struct Variable
 };
 // Global variables
 vector<Token> tokens;
+vector<int> codeLine;
 vector<Token> loopConditionTokens;
 vector<Token> loopExpressionTokens;
 vector<Variable> variables;
@@ -263,14 +262,11 @@ void printTokens()
 {
      cerr << "\n\nTokens: " << endl;
      int i = 0;
-     for (const Token &token : tokens)
+     for (Token &token : tokens)
      {
           string type;
           switch (token.type)
           {
-          case MAIN:
-               type = "MAIN";
-               break;
           case IDENTIFIER:
                type = "IDENTIFIER";
                break;

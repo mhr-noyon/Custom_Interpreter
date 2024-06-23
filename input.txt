@@ -1,28 +1,19 @@
 main:
-     int x=3;
-     scan x;
-     if x >= 5:
-          print "YES";
+     int x, y;
+     scan x, y;
+     if x > y:
+          int i;
+          print "Max: ", x;   
+     elif y > x:       
+          print "Max: ", y;
      else:
-          print "NO";
+          print "Equal";
      endif
-     loop int i=1: i<10: i=i+1:
-          if i<5:
-               print "Less than 5";
-               x = x + i;
-               print x;
+     loop i = 1: i<=5: i=i+1:
+          if i<3:
+               print i;
           else:
                break;
           endif
      endloop
-     x = x + 5;
-     print "After loop, the value of x is: ";
-     print x;
-     x = x ^ 2 + 1;
-     print "Final value of x is: ";
-     print x;
 endmain
-
-
-
-

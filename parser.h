@@ -7,8 +7,9 @@
 // Error handling function
 void error(const string &message)
 {
-     cerr << "Error: " << message << " in " << pos - 1 << "no. token: " << currentToken.name << endl;
-     cout << "Error: " << message << " in " << pos - 1 << "no. token: " << currentToken.name << endl;
+     int lineNum = lower_bound(codeLine.begin(), codeLine.end(), pos) - codeLine.begin();
+     cerr << "Error: " << message << " in Line: " << lineNum + 1 << " & " << pos - 1 << "no. token: " << currentToken.name << endl;
+     cout << "Error: " << message << " in Line: " << lineNum + 1 << " & " << pos - 1 << "no. token: " << currentToken.name << endl;
      exit(EXIT_FAILURE);
 }
 bool isDeclared(string variable)

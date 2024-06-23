@@ -190,17 +190,23 @@ int main()
     {
         // printf("Failed to open the file.\n");
         cerr << "Failed to open the file." << endl;
+
         return 0;
     }
-
     bool is_in_quote = false;
     while (fgets(line_buffer, sizeof(line_buffer), file_pointer))
     {
         // printf("%s", line_buffer);
         cerr << "Line: " << line_buffer;
         identifyTokens(line_buffer);
+        codeLine.push_back(tokens.size());
     }
     fclose(file_pointer);
+
+    // cerr<<"Code Line: "<<endl;
+    // for(auto it:codeLine){
+    //     cerr<<it<<endl;
+    // }
 
     printTokens();
 
