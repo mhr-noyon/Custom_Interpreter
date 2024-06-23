@@ -1,24 +1,25 @@
 Line: main:
-Line:      int x, y;
-Line:      scan x, y;
-Line:      if x > y:
-Line:           int i;
-Line:           print "Max: ", x;   
-Line:      elif y > x:       
+Line:      int x, y = 5;
+Line:      print "Enter x=";
+Line:      scan x;
+Line:      if x < y:
 Line:           print "Max: ", y;
+Line:      elif y > x:
+Line:           print "Max: ", x;
 Line:      else:
 Line:           print "Equal";
 Line:      endif
-Line:      loop i = 1: i<=5: i=i+1:
-Line: 
-Line:           if i<3:
+Line:      int size = 10;
+Line:      loop int i=1 : i<= size: i=i+1:
+Line:           if i<=5:
 Line:                print i;
 Line:           else:
 Line:                break;
 Line:           endif
 Line:      endloop
 Line: endmain
-
+Line: 
+Line:      
 
 Tokens: 
 0th Token: KEYWORD, main
@@ -27,24 +28,24 @@ Tokens:
 3th Token: IDENTIFIER, x
 4th Token: COMMA, ,
 5th Token: IDENTIFIER, y
-6th Token: SEMICOLON, ;
-7th Token: KEYWORD, scan
-8th Token: IDENTIFIER, x
-9th Token: COMMA, ,
-10th Token: IDENTIFIER, y
+6th Token: ASSIGN, =
+7th Token: NUMBER, 5
+8th Token: SEMICOLON, ;
+9th Token: KEYWORD, print
+10th Token: QUOTE, Enter x=
 11th Token: SEMICOLON, ;
-12th Token: KEYWORD, if
+12th Token: KEYWORD, scan
 13th Token: IDENTIFIER, x
-14th Token: GREATER_THAN, >
-15th Token: IDENTIFIER, y
-16th Token: COLON, :
-17th Token: KEYWORD, int
-18th Token: IDENTIFIER, i
-19th Token: SEMICOLON, ;
+14th Token: SEMICOLON, ;
+15th Token: KEYWORD, if
+16th Token: IDENTIFIER, x
+17th Token: LESS_THAN, <
+18th Token: IDENTIFIER, y
+19th Token: COLON, :
 20th Token: KEYWORD, print
 21th Token: QUOTE, Max: 
 22th Token: COMMA, ,
-23th Token: IDENTIFIER, x
+23th Token: IDENTIFIER, y
 24th Token: SEMICOLON, ;
 25th Token: KEYWORD, elif
 26th Token: IDENTIFIER, y
@@ -54,7 +55,7 @@ Tokens:
 30th Token: KEYWORD, print
 31th Token: QUOTE, Max: 
 32th Token: COMMA, ,
-33th Token: IDENTIFIER, y
+33th Token: IDENTIFIER, x
 34th Token: SEMICOLON, ;
 35th Token: KEYWORD, else
 36th Token: COLON, :
@@ -62,36 +63,42 @@ Tokens:
 38th Token: QUOTE, Equal
 39th Token: SEMICOLON, ;
 40th Token: KEYWORD, endif
-41th Token: KEYWORD, loop
-42th Token: IDENTIFIER, i
+41th Token: KEYWORD, int
+42th Token: IDENTIFIER, size
 43th Token: ASSIGN, =
-44th Token: NUMBER, 1
-45th Token: COLON, :
-46th Token: IDENTIFIER, i
-47th Token: LESS_THAN_EQUAL, <=
-48th Token: NUMBER, 5
-49th Token: COLON, :
-50th Token: IDENTIFIER, i
-51th Token: ASSIGN, =
+44th Token: NUMBER, 10
+45th Token: SEMICOLON, ;
+46th Token: KEYWORD, loop
+47th Token: KEYWORD, int
+48th Token: IDENTIFIER, i
+49th Token: ASSIGN, =
+50th Token: NUMBER, 1
+51th Token: COLON, :
 52th Token: IDENTIFIER, i
-53th Token: PLUS, +
-54th Token: NUMBER, 1
+53th Token: LESS_THAN_EQUAL, <=
+54th Token: IDENTIFIER, size
 55th Token: COLON, :
-56th Token: KEYWORD, if
-57th Token: IDENTIFIER, i
-58th Token: LESS_THAN, <
-59th Token: NUMBER, 3
-60th Token: COLON, :
-61th Token: KEYWORD, print
-62th Token: IDENTIFIER, i
-63th Token: SEMICOLON, ;
-64th Token: KEYWORD, else
-65th Token: COLON, :
-66th Token: KEYWORD, break
-67th Token: SEMICOLON, ;
-68th Token: KEYWORD, endif
-69th Token: KEYWORD, endloop
-70th Token: END, 
+56th Token: IDENTIFIER, i
+57th Token: ASSIGN, =
+58th Token: IDENTIFIER, i
+59th Token: PLUS, +
+60th Token: NUMBER, 1
+61th Token: COLON, :
+62th Token: KEYWORD, if
+63th Token: IDENTIFIER, i
+64th Token: LESS_THAN_EQUAL, <=
+65th Token: NUMBER, 5
+66th Token: COLON, :
+67th Token: KEYWORD, print
+68th Token: IDENTIFIER, i
+69th Token: SEMICOLON, ;
+70th Token: KEYWORD, else
+71th Token: COLON, :
+72th Token: KEYWORD, break
+73th Token: SEMICOLON, ;
+74th Token: KEYWORD, endif
+75th Token: KEYWORD, endloop
+76th Token: END, 
 
 
 token number: 0 -> main is moved.
@@ -100,52 +107,56 @@ token number: 2 -> int is moved.
 token number: 3 -> x is moved.
 token number: 4 -> , is moved.
 token number: 5 -> y is moved.
-token number: 6 -> ; is moved.
-token number: 7 -> scan is moved.
-token number: 8 -> x is moved.
+token number: 6 -> = is moved.
+token number: 7 -> 5 is moved.
+token number: 8 -> ; is moved.
+The value of the expression is : 5
+5Expression done
 0 0
-token number: 9 -> , is moved.
-token number: 10 -> y is moved.
-0 0
+token number: 9 -> print is moved.
+token number: 10 -> Enter x= is moved.
 token number: 11 -> ; is moved.
-token number: 12 -> if is moved.
-Here2
+Print Value: Enter x=
+ herer------------------
+token number: 12 -> scan is moved.
 token number: 13 -> x is moved.
-token number: 14 -> > is moved.
-The value of the expression is : 50
-50Expression done
-token number: 15 -> y is moved.
-token number: 16 -> : is moved.
-The value of the expression is : 1
-1Expression done
-condition: 1
-token number: 17 -> int is moved.
-token number: 18 -> i is moved.
-token number: 19 -> ; is moved.
+0 0
+token number: 14 -> ; is moved.
+token number: 15 -> if is moved.
+Here2
+token number: 16 -> x is moved.
+token number: 17 -> < is moved.
+The value of the expression is : 5
+5Expression done
+token number: 18 -> y is moved.
+token number: 19 -> : is moved.
+The value of the expression is : 5
+5Expression done
+condition: 0
 token number: 20 -> print is moved.
 token number: 21 -> Max:  is moved.
 token number: 22 -> , is moved.
 Print Value: Max: 
-token number: 23 -> x is moved.
+token number: 23 -> y is moved.
 token number: 24 -> ; is moved.
-Print Value: 50
+Print Value: 5
 token number: 25 -> elif is moved.
 token number: 26 -> y is moved.
 token number: 27 -> > is moved.
-The value of the expression is : 1
-1Expression done
+The value of the expression is : 5
+5Expression done
 token number: 28 -> x is moved.
 token number: 29 -> : is moved.
-The value of the expression is : 50
-50Expression done
+The value of the expression is : 5
+5Expression done
 condition: 0
 token number: 30 -> print is moved.
 token number: 31 -> Max:  is moved.
 token number: 32 -> , is moved.
 Print Value: Max: 
-token number: 33 -> y is moved.
+token number: 33 -> x is moved.
 token number: 34 -> ; is moved.
-Print Value: 1
+Print Value: 5
 token number: 35 -> else is moved.
 token number: 36 -> : is moved.
 token number: 37 -> print is moved.
@@ -157,6 +168,369 @@ token number: 40 -> endif is moved.
 -----------
 ghurtaseeeeeeee
 ghurtaseeeeeeee
-token number: 41 -> loop is moved.
-token number: 42 -> i is moved.
-Error: Variable is not defined in Line: 12 & 42no. token: i
+token number: 41 -> int is moved.
+token number: 42 -> size is moved.
+token number: 43 -> = is moved.
+token number: 44 -> 10 is moved.
+token number: 45 -> ; is moved.
+The value of the expression is : 10
+10Expression done
+0 0
+token number: 46 -> loop is moved.
+token number: 47 -> int is moved.
+token number: 48 -> i is moved.
+token number: 49 -> = is moved.
+token number: 50 -> 1 is moved.
+token number: 51 -> : is moved.
+The value of the expression is : 1
+1Expression done
+1 0
+token number: 52 -> i is moved.
+token number: 53 -> <= is moved.
+token number: 54 -> size is moved.
+token number: 55 -> : is moved.
+token number: 56 -> i is moved.
+token number: 57 -> = is moved.
+token number: 58 -> i is moved.
+token number: 59 -> + is moved.
+token number: 60 -> 1 is moved.
+token number: 61 -> : is moved.
+Start Loop: 62
+token number: 0 -> i is moved.
+token number: 1 -> <= is moved.
+The value of the expression is : 1
+1Expression done
+token number: 2 -> size is moved.
+token number: 3 -> : is moved.
+---------Variable: size 10
+The value of the expression is : 10
+10Expression done
+condition: 1
+token number: 62 -> if is moved.
+Start nested Loop: 63
+ token: if
+here
+Here2
+token number: 63 -> i is moved.
+token number: 64 -> <= is moved.
+The value of the expression is : 1
+1Expression done
+token number: 65 -> 5 is moved.
+token number: 66 -> : is moved.
+The value of the expression is : 5
+5Expression done
+condition: 1
+token number: 67 -> print is moved.
+token number: 68 -> i is moved.
+token number: 69 -> ; is moved.
+Print Value: 1
+token number: 70 -> else is moved.
+token number: 71 -> : is moved.
+token number: 72 -> break is moved.
+token number: 73 -> ; is moved.
+token number: 74 -> endif is moved.
+1-----------
+i-----------
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+token number: 75 -> endloop is moved.
+end nested Loop: 76
+token number: 0 -> i is moved.
+token number: 1 -> = is moved.
+token number: 2 -> i is moved.
+token number: 3 -> + is moved.
+token number: 4 -> 1 is moved.
+token number: 5 -> : is moved.
+The value of the expression is : 2
+2Expression done
+1 0
+2-----------
+i-----------
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+token number: 0 -> i is moved.
+token number: 1 -> <= is moved.
+The value of the expression is : 2
+2Expression done
+token number: 2 -> size is moved.
+token number: 3 -> : is moved.
+---------Variable: size 10
+The value of the expression is : 10
+10Expression done
+condition: 1
+token number: 62 -> if is moved.
+Start nested Loop: 63
+ token: if
+here
+Here2
+token number: 63 -> i is moved.
+token number: 64 -> <= is moved.
+The value of the expression is : 2
+2Expression done
+token number: 65 -> 5 is moved.
+token number: 66 -> : is moved.
+The value of the expression is : 5
+5Expression done
+condition: 1
+token number: 67 -> print is moved.
+token number: 68 -> i is moved.
+token number: 69 -> ; is moved.
+Print Value: 2
+token number: 70 -> else is moved.
+token number: 71 -> : is moved.
+token number: 72 -> break is moved.
+token number: 73 -> ; is moved.
+token number: 74 -> endif is moved.
+2-----------
+i-----------
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+token number: 75 -> endloop is moved.
+end nested Loop: 76
+token number: 0 -> i is moved.
+token number: 1 -> = is moved.
+token number: 2 -> i is moved.
+token number: 3 -> + is moved.
+token number: 4 -> 1 is moved.
+token number: 5 -> : is moved.
+The value of the expression is : 3
+3Expression done
+1 0
+3-----------
+i-----------
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+token number: 0 -> i is moved.
+token number: 1 -> <= is moved.
+The value of the expression is : 3
+3Expression done
+token number: 2 -> size is moved.
+token number: 3 -> : is moved.
+---------Variable: size 10
+The value of the expression is : 10
+10Expression done
+condition: 1
+token number: 62 -> if is moved.
+Start nested Loop: 63
+ token: if
+here
+Here2
+token number: 63 -> i is moved.
+token number: 64 -> <= is moved.
+The value of the expression is : 3
+3Expression done
+token number: 65 -> 5 is moved.
+token number: 66 -> : is moved.
+The value of the expression is : 5
+5Expression done
+condition: 1
+token number: 67 -> print is moved.
+token number: 68 -> i is moved.
+token number: 69 -> ; is moved.
+Print Value: 3
+token number: 70 -> else is moved.
+token number: 71 -> : is moved.
+token number: 72 -> break is moved.
+token number: 73 -> ; is moved.
+token number: 74 -> endif is moved.
+3-----------
+i-----------
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+token number: 75 -> endloop is moved.
+end nested Loop: 76
+token number: 0 -> i is moved.
+token number: 1 -> = is moved.
+token number: 2 -> i is moved.
+token number: 3 -> + is moved.
+token number: 4 -> 1 is moved.
+token number: 5 -> : is moved.
+The value of the expression is : 4
+4Expression done
+1 0
+4-----------
+i-----------
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+token number: 0 -> i is moved.
+token number: 1 -> <= is moved.
+The value of the expression is : 4
+4Expression done
+token number: 2 -> size is moved.
+token number: 3 -> : is moved.
+---------Variable: size 10
+The value of the expression is : 10
+10Expression done
+condition: 1
+token number: 62 -> if is moved.
+Start nested Loop: 63
+ token: if
+here
+Here2
+token number: 63 -> i is moved.
+token number: 64 -> <= is moved.
+The value of the expression is : 4
+4Expression done
+token number: 65 -> 5 is moved.
+token number: 66 -> : is moved.
+The value of the expression is : 5
+5Expression done
+condition: 1
+token number: 67 -> print is moved.
+token number: 68 -> i is moved.
+token number: 69 -> ; is moved.
+Print Value: 4
+token number: 70 -> else is moved.
+token number: 71 -> : is moved.
+token number: 72 -> break is moved.
+token number: 73 -> ; is moved.
+token number: 74 -> endif is moved.
+4-----------
+i-----------
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+token number: 75 -> endloop is moved.
+end nested Loop: 76
+token number: 0 -> i is moved.
+token number: 1 -> = is moved.
+token number: 2 -> i is moved.
+token number: 3 -> + is moved.
+token number: 4 -> 1 is moved.
+token number: 5 -> : is moved.
+The value of the expression is : 5
+5Expression done
+1 0
+5-----------
+i-----------
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+token number: 0 -> i is moved.
+token number: 1 -> <= is moved.
+The value of the expression is : 5
+5Expression done
+token number: 2 -> size is moved.
+token number: 3 -> : is moved.
+---------Variable: size 10
+The value of the expression is : 10
+10Expression done
+condition: 1
+token number: 62 -> if is moved.
+Start nested Loop: 63
+ token: if
+here
+Here2
+token number: 63 -> i is moved.
+token number: 64 -> <= is moved.
+The value of the expression is : 5
+5Expression done
+token number: 65 -> 5 is moved.
+token number: 66 -> : is moved.
+The value of the expression is : 5
+5Expression done
+condition: 1
+token number: 67 -> print is moved.
+token number: 68 -> i is moved.
+token number: 69 -> ; is moved.
+Print Value: 5
+token number: 70 -> else is moved.
+token number: 71 -> : is moved.
+token number: 72 -> break is moved.
+token number: 73 -> ; is moved.
+token number: 74 -> endif is moved.
+5-----------
+i-----------
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+token number: 75 -> endloop is moved.
+end nested Loop: 76
+token number: 0 -> i is moved.
+token number: 1 -> = is moved.
+token number: 2 -> i is moved.
+token number: 3 -> + is moved.
+token number: 4 -> 1 is moved.
+token number: 5 -> : is moved.
+The value of the expression is : 6
+6Expression done
+1 0
+6-----------
+i-----------
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+token number: 0 -> i is moved.
+token number: 1 -> <= is moved.
+The value of the expression is : 6
+6Expression done
+token number: 2 -> size is moved.
+token number: 3 -> : is moved.
+---------Variable: size 10
+The value of the expression is : 10
+10Expression done
+condition: 1
+token number: 62 -> if is moved.
+Start nested Loop: 63
+ token: if
+here
+Here2
+token number: 63 -> i is moved.
+token number: 64 -> <= is moved.
+The value of the expression is : 6
+6Expression done
+token number: 65 -> 5 is moved.
+token number: 66 -> : is moved.
+The value of the expression is : 5
+5Expression done
+condition: 0
+token number: 67 -> print is moved.
+token number: 68 -> i is moved.
+token number: 69 -> ; is moved.
+Print Value: 6
+token number: 70 -> else is moved.
+token number: 71 -> : is moved.
+token number: 72 -> break is moved.
+6-----------
+i-----------
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+Break Loop from IF CONDITION-----
+token number: 73 -> ; is moved.
+token number: 74 -> endif is moved.
+6-----------
+i-----------
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+token number: 75 -> endloop is moved.
+end nested Loop: 76
+token number: 0 -> i is moved.
+token number: 1 -> = is moved.
+token number: 2 -> i is moved.
+token number: 3 -> + is moved.
+token number: 4 -> 1 is moved.
+token number: 5 -> : is moved.
+1Expression done
+1 1
+1-----------
+i-----------
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+1-----------
+i-----------
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+ghurtaseeeeeeee
+End Loop: 76
+Loop done
+token number: 76 ->  is moved.
+The program is valid.
